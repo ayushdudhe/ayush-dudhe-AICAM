@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - AI-CAM</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
+    <style>
+        .profile-container {
+            width: 1000px;
+            margin: auto;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h3 {
+            margin-top: 0;
+        }
+        .profile-container a {
+            display: inline-block;
+            text-decoration: none;
+            color: #007BFF;
+        }
+        .profile-info {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <h2>User Profile</h2>
+        
+        <!-- Profile Information -->
+        <div class="section profile-info">
+            <h3>Your Profile</h3>
+            <p><strong>Name:</strong> {{ user.name }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Address:</strong> {{ user.address }}</p>
+            <p><strong>Phone:</strong> {{ user.phone }}</p>
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <a href="{{ url_for('edit_profile') }}">
+                <button>Edit Profile</button>
+            </a>
+        </div>
+        
+        <!-- Order List -->
+        <div class="section">
+            <h3>Order List</h3>
+            <ul style="margin-bottom: 40px;">
+                <li><a href="{{ url_for('cart') }}">Your Cart</a></li>
+                <li><a href="{{ url_for('order_history') }}">Your Order History</a></li>
+            </ul>
+        </div>
+                
+        <a href="{{ url_for('home') }}">
+            <button>Back to Home</button>
+        </a>
+    </div>
+</body>
+</html>

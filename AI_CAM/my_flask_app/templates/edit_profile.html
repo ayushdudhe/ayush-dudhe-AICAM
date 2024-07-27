@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile - AI-CAM</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
+    <style>
+        .profile-container {
+            width: 1000px;
+            margin: auto;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h3 {
+            margin-top: 0;
+        }
+        .profile-container a {
+            display: inline-block;
+            text-decoration: none;
+            color: #007BFF;
+        }
+        .profile-info {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <h2>Edit Profile</h2>
+        
+        <!-- Edit Profile Form -->
+        <div class="section profile-info">
+            <form method="POST">
+                <p><strong>Name:</strong> <input type="text" name="name" value="{{ user.name }}"></p>
+                <p><strong>Email:</strong> <input type="email" name="email" value="{{ user.email }}"></p>
+                <p><strong>Address:</strong> <input type="text" name="address" value="{{ user.address }}"></p>
+                <p><strong>Phone:</strong> <input type="text" name="phone" value="{{ user.phone }}"></p>
+                <p><strong>Username:</strong> <input type="text" name="username" value="{{ user.username }}"></p>
+                <p><strong>Password:</strong> <input type="password" name="password" value="{{ user.password }}"></p>
+                <button type="submit">Update Profile</button>
+            </form>
+        </div>
+                
+        <a href="{{ url_for('profile') }}">
+            <button>Back to Profile</button>
+        </a>
+    </div>
+</body>
+</html>

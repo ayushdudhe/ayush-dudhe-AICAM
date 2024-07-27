@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History - AI-CAM</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='loginstyle.css') }}">
+    <style>
+        .order-history-container {
+            width: 1000px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #343a40;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #007bff;
+        }
+
+        p {
+            margin: 5px 0;
+            color: #495057;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 16px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="order-history-container">
+        <h2>Your Order History</h2>
+        
+        <ul>
+            {% for order in orders %}
+                <li>
+                    <h3>Order ID: {{ order.order_id }}</h3>
+                    <p>Name: {{ order.name }}</p>
+                    <p>Price: ₹{{ order.price }}</p>
+                    <p>Date: {{ order.date }}</p>
+                    <p>Status: {{ order.status }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+        
+        <a href="{{ url_for('profile') }}">Back to Profile</a>
+    </div>
+</body>
+</html>

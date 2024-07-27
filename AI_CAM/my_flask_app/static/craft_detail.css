@@ -1,0 +1,62 @@
+.craft-details-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.related-items-container {
+    overflow-x: scroll;
+    display: flex;
+    padding: 20px 0;
+}
+
+.related-items {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.related-item {
+    min-width: 200px;
+    margin-right: 20px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.item-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.item-info {
+    padding: 10px;
+}
+
+.item-info h4 {
+    margin: 10px 0;
+}
+
+.item-info p {
+    margin: 5px 0;
+}
+
+.item-info a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.item-info a:hover {
+    background-color: #0056b3;
+}

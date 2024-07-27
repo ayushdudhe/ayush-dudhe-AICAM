@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - AI-CAM</title>
+    <script>
+        function populateCart() {
+            // Sample items to add to the cart
+            let sampleItems = [
+                { id: 1, name: 'Applique Art', price: 1500, quantity: 1 },
+                { id: 2, name: 'Metal Ware', price: 3000, quantity: 2 },
+                { id: 3, name: 'Beads Craft', price: 500, quantity: 3 }
+            ];
+            
+            // Save the sample items to local storage
+            localStorage.setItem('cart', JSON.stringify(sampleItems));
+        }
+
+        function displayCart() {
+            // Retrieve the cart from local storage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let cartContainer = document.getElementById('cart-items');
+            
+            // Generate HTML for cart items
+            cartContainer.innerHTML = '';
+            if (cart.length === 0) {
+                cartContainer.innerHTML = '<p>Your cart is empty.</p>';
+                return;
+            }
+
+            cart.forEach(item => {
+                let itemDiv = document.createElement('li');
+                itemDiv.classList.add('cart-item');
+                itemDiv.innerHTML = `
+                    <h3>${item.name}</h3>
+                    <p>Price: <span class="item-price">&#8377; ${item.price}</span></p>
+                    <p>Quantity: <span class="item-quantity">${item.quantity}</span></p>
+                    <button onclick="removeFromCart(${item.id})">Remove from Cart</button>
+                `;
+                cartContainer.appendChild(itemDiv);
+            });
+            calculateTotal();
+        }
+
+        function removeFromCart(itemId) {
+            // Retrieve existing cart from local storage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart = cart.filter(item => item.id !== itemId);
+
+            // Save the updated cart to local storage
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Refresh the cart display
+            displayCart();
+        }
+
+        function calculateTotal() {
+            let total = 0;
+            let items = document.getElementsByClassName('cart-item');
+            for (let i = 0; i < items.length; i++) {
+                let price = parseFloat(items[i].getElementsByClassName('item-price')[0].innerText.replace('₹', '').replace(',', ''));
+                let quantity = parseInt(items[i].getElementsByClassName('item-quantity')[0].innerText);
+                total += price * quantity;
+            }
+            document.getElementById('total-amount').innerText = total.toFixed(2);
+        }
+
+        window.onload = function() {
+            populateCart(); // Populate cart with sample items on page load
+            displayCart();  // Display the cart
+        }
+    </script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='cart.css') }}">
+</head>
+<body>
+    <div class="cart-container">
+        <h2>Your Cart</h2>
+        
+        <!-- Cart Items Section -->
+        <ul id="cart-items"></ul>
+        
+        <!-- Total Amount Section -->
+        <h3 class="total">Total Amount: ₹<span id="total-amount"></span></h3>
+        
+        <!-- Proceed for Payment Button -->
+        <form action="{{ url_for('payment') }}">
+            <button type="submit" style="margin-bottom: 20px;">Proceed for Payment</button>
+        </form>
+        
+        <a href="{{ url_for('shop') }}">Back to Shop</a>
+        <a href="{{ url_for('profile') }}" style="margin-left: 30px;">Back to Profile</a>
+    </div>
+</body>
+</html>
+
+

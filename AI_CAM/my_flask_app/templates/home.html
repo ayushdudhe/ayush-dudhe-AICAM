@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - AI-CAM</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='loginstyle.css') }}">
+    <style>
+        .profile-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .home-container {
+            position: relative;
+            width: 1000px;
+            margin: auto;
+        }
+        .menu {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 20px;
+        }
+        .menu a {
+            text-decoration: none;
+            color: #007BFF;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="home-container">
+        <div class="menu">
+            <a href="{{ url_for('profile') }}">Profile</a>
+            <a href="{{ url_for('sign_out') }}">Sign Out</a>
+        </div>
+        <h2>Local Crafts Available</h2>
+        <ul>
+            {% for craft in crafts %}
+                <li>
+                    <a href="{{ url_for('craft_details', craft_id=craft.id) }}">
+                        <h3>{{ craft.name }}</h3>
+                    </a>
+                    <p>{{ craft.summary }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('shop') }}">Shop items</a>
+    </div>  
+</body>
+</html>
